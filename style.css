@@ -31,31 +31,3 @@
 }
 
 
-/* filters */
-.filters{
-    height: 100px;
-    background: #fff;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-
-.filter-options{
-    width: min-content;
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: #f0f0f0;
-    border: 1px solid #dbdbdb;
-    text-transform: capitalize;
-    margin-right: 10px;
-    color: #242424;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.filter-options.active{
-    color: #fff;
-    background: #242424;
-}
