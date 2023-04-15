@@ -91,7 +91,7 @@ function authenticate() {
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
+                console.log("Response", response.json());
               },
               function(err) { console.error("Execute error", err); });
   }
