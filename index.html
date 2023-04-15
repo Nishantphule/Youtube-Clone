@@ -36,33 +36,48 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="navbar-brand" href="#"><i class="fa-brands fa-youtube" style="color: #e1093f;"></i> <b>Youtube</b> </a>
-                <a href="#" onclick="authenticate().then(loadClient)" class="border px-1 rounded-circle"><i class="fa-solid fa-user fa-3" style="color: #131415;"></i></a>
+                <a onclick="getMostPopularVideos()" class="navbar-brand" href="#"><i class="fa-brands fa-youtube" style="color: #e1093f;"></i>
+                    <b>Youtube</b> </a>
+                <a href="#" class="border py-1 px-2"><i class="fa-solid fa-user fa-lg" style="color: #131415;"></i></a>
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a id="home" class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a id="home" onclick="getMostPopularVideos()" class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id="channel" class="nav-link" href="#" >Channel</a>
+                            <a id="channel" class="nav-link" href="#">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a id="playlist" class="nav-link" href="#" tabindex="-1" aria-disabled="true" onclick="execute()">Playlist</a>
+                            <a id="playlist" class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign In</a>
                         </li>
                     </ul>
                     <form id="myForm" class="d-flex">
                         <input class="search-bar form-control me-2" name="name" type="search" placeholder="Search"
                             aria-label="Search">
-                        <button class="search-btn btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #0e0f10;"></i></button>
+                        <button class="search-btn btn btn-outline-success" type="submit"><i
+                                class="fa-solid fa-magnifying-glass" style="color: #0e0f10;"></i></button>
                     </form>
                 </div>
             </div>
         </nav>
+        <div class="container-lg container-fluid mt-2 overflow-auto">
+            <div id="filterSearch" style="width: max-content;height: 70px;">
+                <button class="search-filter bg-primary" onclick="">Most Popular</button>
+                <button class="search-filter">Car</button>
+                <button class="search-filter">Superbikes</button>
+                <button class="search-filter">Messi</button>
+                <button class="search-filter">NFT</button>
+                <button class="search-filter">Ipl</button>
+                <button class="search-filter">ChatGPT</button>
+                <button class="search-filter">Snooker</button>
+                <button class="search-filter">Pool</button>
+                <button class="search-filter">Animals</button>
+            </div>
+        </div>
         <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
         </div>
     </div>
-
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- external js -->
     <script src="/script.js"></script>
