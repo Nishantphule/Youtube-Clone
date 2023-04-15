@@ -76,7 +76,7 @@ function authenticate() {
               function(err) { console.error("Error signing in", err); });
   }
   function loadClient() {
-    gapi.client.setApiKey("YOUR_API_KEY");
+    gapi.client.setApiKey("AIzaSyCU7LomXvsy8Q-atxxHJmH3ZuAiPceVoXc");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
@@ -96,5 +96,5 @@ function authenticate() {
               function(err) { console.error("Execute error", err); });
   }
   gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
+    gapi.auth2.init({client_id: "725121126436-5flbb3htfh905rap6bmg3q6srtm782hc.apps.googleusercontent.com"});
   });
