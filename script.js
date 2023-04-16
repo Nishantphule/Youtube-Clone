@@ -301,7 +301,7 @@ else if(viewCount<=1000000){
 
   <div class="col">
   <div class="card">
-  <img src="${playlistCard[0].snippet.thumbnails.default.url}" class="card-img-top" alt="${playlistCard[0].snippet.title}">
+  <img src="${playlistCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[0].snippet.title}">
   <div class="card-body">
     <h5 class="card-title">${playlistCard[0].snippet.title}</h5>
     <small>${playlistCard[0].contentDetails.itemCount} Videos</small>
@@ -311,7 +311,7 @@ else if(viewCount<=1000000){
   
   <div class="col">
   <div class="card">
-  <img src="${playlistCard[1].snippet.thumbnails.default.url}" class="card-img-top" alt="${playlistCard[1].snippet.title}">
+  <img src="${playlistCard[1].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[1].snippet.title}">
   <div class="card-body">
     <h5 class="card-title">${playlistCard[1].snippet.title}</h5>
     <small>${playlistCard[1].contentDetails.itemCount} Videos</small>
@@ -321,7 +321,7 @@ else if(viewCount<=1000000){
   
   <div class="col">
   <div class="card">
-  <img src="${playlistCard[2].snippet.thumbnails.default.url}" class="card-img-top" alt="${playlistCard[2].snippet.title}">
+  <img src="${playlistCard[2].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[2].snippet.title}">
   <div class="card-body">
     <h5 class="card-title">${playlistCard[2].snippet.title}</h5>
     <small>${playlistCard[2].contentDetails.itemCount} Videos</small>
@@ -337,7 +337,7 @@ else if(viewCount<=1000000){
   
 <div class="col">
 <div class="card">
-<img src="${activityCard[0].snippet.thumbnails.default.url}" class="card-img-top" alt="${activityCard[0].snippet.title}">
+<img src="${activityCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[0].snippet.title}">
 <div class="card-body">
   <h5 class="card-title">${activityCard[0].snippet.title}</h5>
   <small>${(activityCard[0].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
@@ -347,7 +347,7 @@ else if(viewCount<=1000000){
 
 <div class="col">
 <div class="card">
-<img src="${activityCard[1].snippet.thumbnails.default.url}" class="card-img-top" alt="${activityCard[1].snippet.title}">
+<img src="${activityCard[1].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[1].snippet.title}">
 <div class="card-body">
   <h5 class="card-title">${activityCard[1].snippet.title}</h5>
   <small>${(activityCard[1].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
@@ -357,7 +357,7 @@ else if(viewCount<=1000000){
 
 <div class="col">
 <div class="card">
-<img src="${activityCard[2].snippet.thumbnails.default.url}" class="card-img-top" alt="${activityCard[2].snippet.title}">
+<img src="${activityCard[2].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[2].snippet.title}">
 <div class="card-body">
   <h5 class="card-title">${activityCard[2].snippet.title}</h5>
   <small>${(activityCard[2].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
