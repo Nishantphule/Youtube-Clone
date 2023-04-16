@@ -89,6 +89,7 @@ const makeVideoCard = (data, channelIcon) => {
 async function getMostPopularVideos() {
   try {
     videoCardContainer.innerHTML = ""
+    videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     const res = await fetch(`${video_http}part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&key=${API_KEY}`)
     const data = await res.json()
     data.items.forEach(item => {
@@ -144,6 +145,7 @@ async function watchVideo(id) {
   const iframeDiv = document.createElement("iframe")
   iframeDiv.classList = "youtubeVideo card-img-top"
   iframeDiv.src = `https://www.youtube.com/embed/${videoData.id}`
+  iframeDiv.setAttribute("allowFullscreen","")
 
   const bodyDiv = document.createElement("div")
   bodyDiv.classList = "card-body"
