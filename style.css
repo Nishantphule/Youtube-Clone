@@ -58,3 +58,12 @@
     margin-left: 50px;
     margin-top: 20px;
   }
+  
+  .aboutIcon{
+    height: 20vh;
+  }
+  
+  .aboutCard{
+    width: 50%;
+    height: min-content;
+  }
