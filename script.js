@@ -173,8 +173,15 @@ async function watchVideo(id) {
   const readBtn = document.createElement("button")
   readBtn.id = "myBtn"
   readBtn.innerHTML = "Read More"
+  
+  const backBtn = document.createElement("button")
+  backBtn.classList="ms-2"
+  backBtn.innerText="Back"
+  backBtn.addEventListener("click",()=>{
+    getMostPopularVideos()
+  })
 
-  bodyDiv.append(title, pTag, readBtn)
+  bodyDiv.append(title, pTag, readBtn,backBtn)
   videoCardContainer.appendChild(cardDiv)
 
   readBtn.addEventListener("click", (e) => {
