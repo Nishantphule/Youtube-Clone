@@ -75,7 +75,7 @@ const makeVideoCard = (data, channelIcon) => {
   let name = document.createElement("p")
   name.classList = "channel-name"
   name.innerText = data.snippet.channelTitle
-  name.title = "View Channel"
+  name.title = "Visit Channel"
   name.style.cursor = "pointer"
   name.addEventListener("click", () => {
     getChannelDetails(data.snippet.channelId)
@@ -377,7 +377,6 @@ else if(viewCount<=1000000){
   </div>
 </div>
   </div>
-  
   
   
   
