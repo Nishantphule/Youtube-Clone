@@ -1,5 +1,5 @@
 // api key
-let API_KEY = 'AIzaSyDOCyR8hRpnGumCXtZdDnegkms9pvhjWQA'
+let API_KEY = 'AIzaSyAqAK9B8sn_PLjx69LS8fNeHX83cMs00RI'
 
 // div where videos get append
 const videoCardContainer = document.querySelector('.videoCardContainer');
@@ -90,11 +90,43 @@ const makeVideoCard = (data, channelIcon) => {
 }
 
 
+
+// filter
+var filterButtons = document.querySelectorAll(".search-filter")
+filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
+  let filterValue = e.target.firstChild.nodeValue
+  localStorage.setItem("recent", JSON.stringify(filterValue))
+  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${filterValue}&key=${API_KEY}`)
+  const data = await fetchURL.json()
+  filterFunc()
+  videoCardContainer.innerHTML = ""
+  videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+  data.items.forEach(item => {
+    getChannelIcon(item);
+  })
+}))
+
+function filterFunc() {
+  let data = JSON.parse(localStorage.getItem("recent"))
+  filterButtons.forEach(btn => {
+    if (btn.innerText !== data) {
+      btn.classList = "search-filter"
+    }
+    else {
+      btn.classList = 'search-filter bg-primary'
+    }
+  })
+}
+
+
+
 // to get most popular videos
 async function getMostPopularVideos() {
   try {
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+    localStorage.setItem("recent",JSON.stringify("Most Popular"))
+    filterFunc()
     const res = await fetch(`${video_http}part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&key=${API_KEY}`)
     const data = await res.json()
     data.items.forEach(item => {
@@ -105,6 +137,7 @@ async function getMostPopularVideos() {
   }
 }
 getMostPopularVideos()
+
 
 
 // form
@@ -129,6 +162,7 @@ formObj.addEventListener("submit", async (e) => {
     alert("Type Something to Search...!")
   }
 })
+
 
 
 // watch video
@@ -201,34 +235,6 @@ async function watchVideo(id) {
       dots.style.display = "none";
       btnText.innerHTML = "Read less";
       moreText.style.display = "inline";
-    }
-  })
-}
-
-
-// filter
-const filterButtons = document.querySelectorAll(".search-filter")
-filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
-  let filterValue = e.target.firstChild.nodeValue
-  localStorage.setItem("recent", JSON.stringify(filterValue))
-  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${filterValue}&key=${API_KEY}`)
-  const data = await fetchURL.json()
-  filterFunc()
-  videoCardContainer.innerHTML = ""
-  videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
-  data.items.forEach(item => {
-    getChannelIcon(item);
-  })
-}))
-
-function filterFunc() {
-  let data = JSON.parse(localStorage.getItem("recent"))
-  filterButtons.forEach(btn => {
-    if (btn.innerText !== data) {
-      btn.classList = "search-filter"
-    }
-    else {
-      btn.classList = 'search-filter bg-primary'
     }
   })
 }
