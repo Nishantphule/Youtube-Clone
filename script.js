@@ -42,12 +42,17 @@ const makeVideoCard = (data, channelIcon) => {
   cardImg.title = "Watch Video"
   cardImg.style.cursor = "pointer"
   cardImg.addEventListener("click", () => {
+    console.log(data)
+    if(data.id.kind === 'youtube#channel'){
+      getChannelDetails(data.snippet.channelId)
+    }
     if (typeof data.id === "string") {
       watchVideo(data.id)
     }
     else {
       watchVideo(data.id.videoId)
     }
+    
   })
 
   let cardBody = document.createElement("div")
