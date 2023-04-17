@@ -42,11 +42,10 @@ const makeVideoCard = (data, channelIcon) => {
   cardImg.title = "Watch Video"
   cardImg.style.cursor = "pointer"
   cardImg.addEventListener("click", () => {
-    console.log(data)
     if(data.id.kind === 'youtube#channel'){
       getChannelDetails(data.snippet.channelId)
     }
-    if (typeof data.id === "string") {
+    else if (typeof data.id === "string") {
       watchVideo(data.id)
     }
     else {
@@ -193,6 +192,29 @@ async function watchVideo(id) {
   const title = document.createElement("h5")
   title.classList = "card-title"
   title.innerText = videoData.snippet.title
+  
+  let views = videoData.statistics.viewCount
+  let comments = videoData.statistics.commentCount
+  let likes = videoData.statistics.likeCount
+  let statsCount = [views,comments,likes].map((stat)=>{
+    if(stat <1000000 && stat >=1000){
+      return stat = `${(stat/1000).toFixed(3)}K`
+    }
+    else if(stat >= 1000000 && stat <1000000000){
+      return stat = `${(stat/1000000).toFixed(2)}M`
+    }
+    else if(stat >= 1000000000){
+      return stat = `${(stat/1000000000).toFixed(1)}B`
+    }
+    else{
+      return stat = stat
+    }
+  })
+  
+  const stats = document.createElement("h6")
+  stats.classList="card-text"
+  stats.innerHTML = `${statsCount[0]} views <small>${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small>  <br/> <i class="fa-regular fa-thumbs-up" style="color: #0f0f10;"></i> ${statsCount[2]} Comments ${statsCount[1]}
+  `
 
   const pTag = document.createElement("p")
   pTag.classList = "card-text"
@@ -220,7 +242,7 @@ async function watchVideo(id) {
     getMostPopularVideos()
   })
 
-  bodyDiv.append(title, pTag, readBtn,backBtn)
+  bodyDiv.append(title, stats, pTag, readBtn, backBtn)
   videoCardContainer.appendChild(cardDiv)
 
   readBtn.addEventListener("click", (e) => {
@@ -264,15 +286,22 @@ async function getChannelDetails(id) {
   activityCard = activityData.items
   
 let viewCount = videoData.statistics.viewCount
-if(viewCount>=1000000 && viewCount<1000000000){
-  viewCount = `${(videoData.statistics.viewCount / 1000000).toFixed()} M`
-}
-else if(viewCount>=1000000000){
-  viewCount = `${(videoData.statistics.viewCount / 1000000000).toFixed()} B`
-}
-else if(viewCount<=1000000){
-  viewCount = `${(videoData.statistics.viewCount / 1000).toFixed()} K`
-}
+let subsCount = videoData.statistics.subscriberCount
+let statsCount = [viewCount,subsCount].map((stat)=>{
+  if(stat <1000000 && stat >=1000){
+    return stat = `${(stat/1000).toFixed(3)}K`
+  }
+  else if(stat >= 1000000 && stat <1000000000){
+    return stat = `${(stat/1000000).toFixed(2)}M`
+  }
+  else if(stat >= 1000000000){
+    return stat = `${(stat/1000000000).toFixed(1)}B`
+  }
+  else{
+    return stat = stat
+  }
+})
+
   videoCardContainer.innerHTML = `
     
     <div class="card mb-3 p-2 mt-3">
@@ -290,7 +319,7 @@ else if(viewCount<=1000000){
         ${videoData.snippet.country}
         <span class="visually-hidden">country</span>
       </span> </h4>
-        <h5 class="card-title">${videoData.statistics.subscriberCount} Subscribers ${videoData.statistics.videoCount} Videos <br/> ${viewCount} Views</h5>
+        <h5 class="card-title">${statsCount[1]} Subscribers ${videoData.statistics.videoCount} Videos <br/> ${statsCount[0]} Views</h5>
         <p class="card-text">${videoData.snippet.localized.description}</p>
       </div>
     </div>
