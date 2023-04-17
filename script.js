@@ -1,4 +1,5 @@
-import API_KEY from "./apikey";
+// api key
+const API_KEY = 'AIzaSyAqAK9B8sn_PLjx69LS8fNeHX83cMs00RI';
 
 // div where videos get append
 const videoCardContainer = document.querySelector('.videoCardContainer');
