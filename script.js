@@ -213,7 +213,7 @@ async function watchVideo(id) {
   
   const stats = document.createElement("h6")
   stats.classList="card-text"
-  stats.innerHTML = `${statsCount[0]} views <small>${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small>  <br/> <i class="fa-regular fa-thumbs-up" style="color: #0f0f10;"></i> ${statsCount[2]} Comments ${statsCount[1]}
+  stats.innerHTML = `${statsCount[0]} views <small class="text-muted">${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small>  <br/> <i class="fa-regular fa-thumbs-up" style="color: #0f0f10;"></i> ${statsCount[2]} Comments ${statsCount[1]}
   `
 
   const pTag = document.createElement("p")
