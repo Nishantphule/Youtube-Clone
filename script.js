@@ -145,12 +145,14 @@ const searchBtn = document.querySelector('.search-btn');
 const formObj = document.getElementById("myForm")
 
 formObj.addEventListener("submit", async (e) => {
-  localStorage.setItem("recent", JSON.stringify("none"))
-  filterFunc()
   e.preventDefault()
   if (searchInput.value.length) {
     const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${searchInput.value}&key=${API_KEY}`)
     const data = await fetchURL.json()
+  
+    localStorage.setItem("recent", JSON.stringify(searchInput.value))
+    filterFunc()
+    
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
@@ -167,8 +169,6 @@ formObj.addEventListener("submit", async (e) => {
 // watch video
 async function watchVideo(id) {
   videoCardContainer.innerHTML = ""
-  localStorage.setItem("recent", JSON.stringify("none"))
-  filterFunc()
   const fetchURL = await fetch(`${video_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
   const data = await fetchURL.json()
   const videoData = data.items[0]
@@ -239,7 +239,7 @@ async function watchVideo(id) {
   backBtn.classList="ms-2"
   backBtn.innerText="Back"
   backBtn.addEventListener("click",()=>{
-    getMostPopularVideos()
+    backBtnFunc()
   })
 
   bodyDiv.append(title, stats, pTag, readBtn, backBtn)
@@ -263,12 +263,26 @@ async function watchVideo(id) {
 
 
 
+// back btn
+async function backBtnFunc(){
+  const recent = localStorage.getItem("recent")
+  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${recent}&key=${API_KEY}`)
+  const data = await fetchURL.json()
+  filterFunc()
+  videoCardContainer.innerHTML = ""
+  videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+  data.items.forEach(item => {
+    getChannelIcon(item);
+  })
+  
+}
+
+
+
 // get channel details
 async function getChannelDetails(id) {
   videoCardContainer.innerHTML = ""
   videoCardContainer.classList="videoCardContainer"
-  localStorage.setItem("recent", JSON.stringify("none"))
-  filterFunc()
 
   // channel details
   const fetchURL = await fetch(`${channel_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
@@ -305,8 +319,11 @@ let statsCount = [viewCount,subsCount].map((stat)=>{
   videoCardContainer.innerHTML = `
     
     <div class="card mb-3 p-2 mt-3">
+    
   <div class="row g-0">
+  
     <div class="col-md-4">
+    <button onClick="backBtnFunc()"><i class="fa-solid fa-arrow-left fa-lg" style="color: #111213;"></i></button>
       <img src="${videoData.snippet.thumbnails.default.url}" class="channelIcon rounded-circle" alt="${videoData.snippet.title}">
     </div>
     <div class="col-md-8">
