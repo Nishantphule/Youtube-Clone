@@ -354,9 +354,18 @@ async function getChannelDetails(id) {
       </div>
     </div>
   </div>
+  
+</div>
+  
 </div>
 
-<nav>
+
+    `
+
+    if( activityCard[2] !== undefined && playlistCard[2] !== undefined){
+      videoCardContainer.innerHTML+=
+      `
+      <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-playlist-tab" data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button" role="tab" aria-controls="nav-playlist" aria-selected="true">Playlist</button>
     <button class="nav-link" id="nav-activity-tab" data-bs-toggle="tab" data-bs-target="#nav-activity" type="button" role="tab" aria-controls="nav-activity" aria-selected="false">Recent Activity</button>
@@ -453,13 +462,6 @@ async function getChannelDetails(id) {
     </div>
   </div>
 </div>
-  </div>
-  
-  
-  
-</div>
-
-
-    `
-
+  </div>`
+    }
 }

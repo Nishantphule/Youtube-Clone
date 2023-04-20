@@ -39,16 +39,12 @@
                 <a onclick="getMostPopularVideos()" class="navbar-brand" href="#"><i class="fa-brands fa-youtube"
                         style="color: #e1093f;"></i>
                     <b>Youtube</b> </a>
-                <a href="#" onclick="alert('Profile login Will be available Soon..')" class="border py-1 px-2"><i class="fa-solid fa-user fa-lg" style="color: #131415;"></i></a>
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a id="home" type="button" onclick="getMostPopularVideos()" class="nav-link active" aria-current="page"
                                 href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="channel" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link" >About</a>
                         </li>
                     </ul>
                     <form id="myForm" class="d-flex">
@@ -57,30 +53,6 @@
                         <button class="search-btn btn btn-outline-success" type="submit"><i
                                 class="fa-solid fa-magnifying-glass" style="color: #0e0f10;"></i></button>
                     </form>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Instructions</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <ul>
-                                    <li>Click on icon to visit channel</li>
-                                    <li>Click on thumbnail to watch Video</li>
-                                    <li class="text-danger">some click may not work due to technical issue. Work in progress.!</li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -101,7 +73,7 @@
         <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
         </div>
     </div>
-    <script src="https://apis.google.com/js/api.js"></script>
+    
     <!-- external js -->
     <script src="/script.js"></script>
 
