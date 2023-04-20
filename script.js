@@ -42,7 +42,7 @@ const makeVideoCard = (data, channelIcon) => {
   cardImg.title = "Watch Video"
   cardImg.style.cursor = "pointer"
   cardImg.addEventListener("click", () => {
-    if(data.id.kind === 'youtube#channel'){
+    if (data.id.kind === 'youtube#channel') {
       getChannelDetails(data.snippet.channelId)
     }
     else if (typeof data.id === "string") {
@@ -51,7 +51,7 @@ const makeVideoCard = (data, channelIcon) => {
     else {
       watchVideo(data.id.videoId)
     }
-    
+
   })
 
   let cardBody = document.createElement("div")
@@ -99,7 +99,7 @@ filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
   const data = await fetchURL.json()
   filterFunc()
   videoCardContainer.innerHTML = ""
-  videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+  videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
   data.items.forEach(item => {
     getChannelIcon(item);
   })
@@ -123,8 +123,8 @@ function filterFunc() {
 async function getMostPopularVideos() {
   try {
     videoCardContainer.innerHTML = ""
-    videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
-    localStorage.setItem("recent",JSON.stringify("Most Popular"))
+    videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+    localStorage.setItem("recent", JSON.stringify("Most Popular"))
     filterFunc()
     const res = await fetch(`${video_http}part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&key=${API_KEY}`)
     const data = await res.json()
@@ -149,12 +149,12 @@ formObj.addEventListener("submit", async (e) => {
   if (searchInput.value.length) {
     const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${searchInput.value}&key=${API_KEY}`)
     const data = await fetchURL.json()
-  
+
     localStorage.setItem("recent", JSON.stringify(searchInput.value))
     filterFunc()
-    
+
     videoCardContainer.innerHTML = ""
-    videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+    videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
       getChannelIcon(item);
     })
@@ -172,9 +172,9 @@ async function watchVideo(id) {
   const fetchURL = await fetch(`${video_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
   const data = await fetchURL.json()
   const videoData = data.items[0]
-  let length = (videoData.snippet.description).split("").length
+  let lengthNum = (videoData.snippet.description).split("").length
   let description = (videoData.snippet.description).split("").slice(0, 200).join("")
-  let rest = (videoData.snippet.description).split("").slice(200, length).join("")
+  let rest = (videoData.snippet.description).split("").slice(200, lengthNum).join("")
 
   const cardDiv = document.createElement("div")
   cardDiv.classList = "card"
@@ -183,7 +183,7 @@ async function watchVideo(id) {
   const iframeDiv = document.createElement("iframe")
   iframeDiv.classList = "youtubeVideo card-img-top"
   iframeDiv.src = `https://www.youtube.com/embed/${videoData.id}`
-  iframeDiv.setAttribute("allowFullscreen","")
+  iframeDiv.setAttribute("allowFullscreen", "")
 
   const bodyDiv = document.createElement("div")
   bodyDiv.classList = "card-body"
@@ -192,27 +192,27 @@ async function watchVideo(id) {
   const title = document.createElement("h5")
   title.classList = "card-title"
   title.innerText = videoData.snippet.title
-  
+
   let views = videoData.statistics.viewCount
   let comments = videoData.statistics.commentCount
   let likes = videoData.statistics.likeCount
-  let statsCount = [views,comments,likes].map((stat)=>{
-    if(stat <1000000 && stat >=1000){
-      return stat = `${(stat/1000).toFixed(3)}K`
+  let statsCount = [views, comments, likes].map((stat) => {
+    if (stat < 1000000 && stat >= 1000) {
+      return stat = `${(stat / 1000).toFixed(3)}K`
     }
-    else if(stat >= 1000000 && stat <1000000000){
-      return stat = `${(stat/1000000).toFixed(2)}M`
+    else if (stat >= 1000000 && stat < 1000000000) {
+      return stat = `${(stat / 1000000).toFixed(2)}M`
     }
-    else if(stat >= 1000000000){
-      return stat = `${(stat/1000000000).toFixed(1)}B`
+    else if (stat >= 1000000000) {
+      return stat = `${(stat / 1000000000).toFixed(1)}B`
     }
-    else{
+    else {
       return stat = stat
     }
   })
-  
+
   const stats = document.createElement("h6")
-  stats.classList="card-text"
+  stats.classList = "card-text"
   stats.innerHTML = `${statsCount[0]} views <small class="text-muted">${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small>  <br/> <i class="fa-regular fa-thumbs-up" style="color: #0f0f10;"></i> ${statsCount[2]} Comments ${statsCount[1]}
   `
 
@@ -234,53 +234,53 @@ async function watchVideo(id) {
   const readBtn = document.createElement("button")
   readBtn.id = "myBtn"
   readBtn.innerHTML = "Read More"
-  
+
   const backBtn = document.createElement("button")
-  backBtn.classList="ms-2"
-  backBtn.innerText="Back"
-  backBtn.addEventListener("click",()=>{
+  backBtn.classList = "ms-2"
+  backBtn.innerText = "Back"
+  backBtn.addEventListener("click", () => {
     backBtnFunc()
   })
 
   bodyDiv.append(title, stats, pTag, readBtn, backBtn)
   videoCardContainer.appendChild(cardDiv)
-  
+
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("more");
   var btnText = document.getElementById("myBtn");
-  
-  if(rest.length < 200){
+
+  if (lengthNum < 200) {
     dots.style.display = "none";
-      btnText.style.display = "none";
+    btnText.style.display = "none";
   }
-  
+
   readBtn.addEventListener("click", (e) => {
-      if (dots.style.display === "none") {
-        dots.style.display = "inline";
-        btnText.innerHTML = "Read more";
-        moreText.style.display = "none";
-      } else {
-        dots.style.display = "none";
-        btnText.innerHTML = "Read less";
-        moreText.style.display = "inline";
-      }
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more";
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less";
+      moreText.style.display = "inline";
+    }
   })
 }
 
 
 
 // back btn
-async function backBtnFunc(){
+async function backBtnFunc() {
   const recent = localStorage.getItem("recent")
   const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${recent}&key=${API_KEY}`)
   const data = await fetchURL.json()
   filterFunc()
   videoCardContainer.innerHTML = ""
-  videoCardContainer.classList="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+  videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
   data.items.forEach(item => {
     getChannelIcon(item);
   })
-  
+
 }
 
 
@@ -288,7 +288,7 @@ async function backBtnFunc(){
 // get channel details
 async function getChannelDetails(id) {
   videoCardContainer.innerHTML = ""
-  videoCardContainer.classList="videoCardContainer"
+  videoCardContainer.classList = "videoCardContainer"
 
   // channel details
   const fetchURL = await fetch(`${channel_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
@@ -304,23 +304,28 @@ async function getChannelDetails(id) {
   const activityURL = await fetch(`${activity_http}part=snippet%2CcontentDetails&channelId=${id}&maxResults=3&key=${API_KEY}`)
   const activityData = await activityURL.json()
   activityCard = activityData.items
-  
-let viewCount = videoData.statistics.viewCount
-let subsCount = videoData.statistics.subscriberCount
-let statsCount = [viewCount,subsCount].map((stat)=>{
-  if(stat <1000000 && stat >=1000){
-    return stat = `${(stat/1000).toFixed(3)}K`
+
+  let viewCount = videoData.statistics.viewCount
+  let subsCount = videoData.statistics.subscriberCount
+  let statsCount = [viewCount, subsCount].map((stat) => {
+    if (stat < 1000000 && stat >= 1000) {
+      return stat = `${(stat / 1000).toFixed(3)}K`
+    }
+    else if (stat >= 1000000 && stat < 1000000000) {
+      return stat = `${(stat / 1000000).toFixed(2)}M`
+    }
+    else if (stat >= 1000000000) {
+      return stat = `${(stat / 1000000000).toFixed(1)}B`
+    }
+    else {
+      return stat = stat
+    }
+  })
+
+  let countryName = videoData.snippet.country
+  if (countryName === undefined) {
+    countryName = "N/A"
   }
-  else if(stat >= 1000000 && stat <1000000000){
-    return stat = `${(stat/1000000).toFixed(2)}M`
-  }
-  else if(stat >= 1000000000){
-    return stat = `${(stat/1000000000).toFixed(1)}B`
-  }
-  else{
-    return stat = stat
-  }
-})
 
   videoCardContainer.innerHTML = `
     
@@ -338,10 +343,12 @@ let statsCount = [viewCount,subsCount].map((stat)=>{
         ${videoData.snippet.title} 
         <small class="text-muted">
         ${videoData.snippet.customUrl}
-        </small><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        ${videoData.snippet.country}
+        </small>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" title="country">
+        ${countryName}
         <span class="visually-hidden">country</span>
-      </span> </h4>
+      </span> 
+      </h4>
         <h5 class="card-title">${statsCount[1]} Subscribers ${videoData.statistics.videoCount} Videos <br/> ${statsCount[0]} Views</h5>
         <p class="card-text">${videoData.snippet.localized.description}</p>
       </div>
