@@ -14,48 +14,85 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- external css -->
-    <link rel="stylesheet" href="style.css">
-
     <!-- bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- external css -->
+    <link rel="stylesheet" href="/style.css">
 
     <title>Youtube Clone</title>
 </head>
 
 <body>
 
-    <div class="container-lg container-fluid">
+    <div class="container-lg container-fluid position-relative">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-gradient mb-1">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+        <!-- navbar for large screen -->
+        <nav id="mainNav" class="navbar navbar-collapse navbar-light mb-1">
+            <div>
+                <button id="sideBarNav" class="border-0 bg-transparent"><i class="fa fa-bars fa-lg"
+                        style="color: #090a0b;"></i></button>
                 <a onclick="getMostPopularVideos()" class="navbar-brand" href="#"><i class="fa-brands fa-youtube"
                         style="color: #e1093f;"></i>
-                    <b>Youtube</b> </a>
+                    <b>Youtube <sup><small>IN</small></sup> </b> </a>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a id="home" type="button" onclick="getMostPopularVideos()" class="nav-link active" aria-current="page"
-                                href="#">Home</a>
-                        </li>
-                    </ul>
-                    <form id="myForm" class="d-flex">
-                        <input class="search-bar form-control me-2" name="name" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <button class="search-btn btn btn-outline-success" type="submit"><i
-                                class="fa-solid fa-magnifying-glass" style="color: #0e0f10;"></i></button>
-                    </form>
-                </div>
+            <div class="serachForm d-flex">
+                <form id="myForm" class="d-none d-md-flex">
+                    <input class="search-bar form-control me-2" name="name" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="search-btn btn btn-outline-success" type="submit"><i
+                            class="fa-solid fa-magnifying-glass fa-lg" style="color: #0e0f10;"></i></button>
+                    <button class="border-0 bg-transparent mx-2 p-1 "><i class="fa-solid fa-microphone fa-lg"
+                            style="color: #131416;"></i></button>
+                </form>
+            </div>
+
+            <div>
+                <button onclick="resNav()" class="border-0 bg-transparent d-md-none"><i
+                        class="fa-solid fa-magnifying-glass fa-lg" style="color: #0e0f10;"></i></button>
+                <button class=" border-0 mx-1 p-2 bg-transparent"><i class="fa-solid fa-video fa-lg"
+                        style="color: #050505;"></i></button>
+                <button class=" border-0  mx-1 p-2 bg-transparent"><i class="fa-solid fa-bell fa-lg"
+                        style="color: #050505;"></i><sup
+                        class="text-white bg-danger rounded-circle p-1">9+</sup></button>
+                <button class=" border-0 p-2 bg-transparent"><i class="fa-solid fa-user fa-lg"
+                        style="color: #030303;"></i></button>
             </div>
         </nav>
+
+        <!-- narbar for mobile screen-->
+        <nav id="responsiveNav">
+            <div class="resNavBar">
+                <button onclick="backBtnNav()" class="border-1"><i class="fa-solid fa-light fa-arrow-left fa-2"
+                        style="color: #0c0d0d;"></i> Back</button>
+                <form id="myFormRes" class="resNavBar">
+                    <input class="search-bar-res form-control me-2" name="name" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="search-btn-res btn btn-outline-success" type="submit"><i
+                            class="fa-solid fa-magnifying-glass fa-lg" style="color: #0e0f10;"></i></button>
+                    <button class="border-0 bg-transparent mx-2 p-2 fa-lg"><i class="fa-solid fa-microphone fa-lg"
+                            style="color: #131416;"></i></button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- sidebar -->
+        <div id="sideNav" class="side-bar container-fluid container-lg">
+            <a href="#" class="links active"><img src="img/home.PNG" alt="home">home</a>
+            <a href="#" class="links"><img src="img/explore.PNG" alt="explore">explore</a>
+            <a href="#" class="links"><img src="img/subscription.PNG" alt="subscription">subscription</a>
+            <hr class="seperator">
+            <a href="#" class="links"><img src="img/library.PNG" alt="library">library</a>
+            <a href="#" class="links"><img src="img/history.PNG" alt="history">history</a>
+            <a href="#" class="links"><img src="img/your-video.PNG" alt="your video">your videos</a>
+            <a href="#" class="links"><img src="img/watch-later.PNG" alt="watch later">watch later</a>
+            <a href="#" class="links"><img src="img/liked video.PNG" alt="like video">liked videos</a>
+            <a href="#" class="links"><img src="img/show more.PNG" alt="show more">show more</a>
+        </div>
+
+        <!-- filter bar -->
         <div class="container-lg container-fluid mt-2 overflow-auto">
             <div id="filterSearch" style="width: max-content;height: 70px;">
                 <button class="search-filter bg-primary poin">Most Popular</button>
@@ -70,10 +107,12 @@
                 <button class="search-filter">Animals</button>
             </div>
         </div>
+
+        <!-- content div -->
         <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
         </div>
     </div>
-    
+
     <!-- external js -->
     <script src="/script.js"></script>
 

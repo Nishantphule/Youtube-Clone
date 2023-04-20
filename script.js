@@ -11,6 +11,33 @@ let playlist_http = "https://www.googleapis.com/youtube/v3/playlists?"
 let keyword_http = "https://www.googleapis.com/youtube/v3/search?"
 let activity_http = "https://youtube.googleapis.com/youtube/v3/activities?"
 
+// responsive nav
+function resNav() {
+  document.getElementById("mainNav").style.display = "none"
+  document.getElementById("responsiveNav").style.display = "block"
+}
+
+function backBtnNav() {
+  document.getElementById("mainNav").style.display = "flex"
+  document.getElementById("responsiveNav").style.display = "none"
+}
+
+const sideBar = document.getElementById("sideNav")
+sideBar.style.display = "none"
+document.getElementById("sideBarNav").addEventListener("click", () => {
+  if (sideBar.style.display === "none") {
+    sideBar.style.display = "block"
+  }
+  else {
+    sideBar.style.display = "none"
+  }
+})
+
+videoCardContainer.addEventListener("click", () => {
+  sideBar.style.display = "none"
+})
+
+
 
 // getting channel icon
 const getChannelIcon = (video_data) => {
@@ -140,8 +167,8 @@ getMostPopularVideos()
 
 
 // form
-const searchInput = document.querySelector('.search-bar');
-const searchBtn = document.querySelector('.search-btn');
+const searchInput = document.querySelectorAll('.search-bar');
+const searchBtn = document.querySelectorAll('.search-btn');
 const formObj = document.getElementById("myForm")
 
 formObj.addEventListener("submit", async (e) => {
@@ -151,6 +178,33 @@ formObj.addEventListener("submit", async (e) => {
     const data = await fetchURL.json()
 
     localStorage.setItem("recent", JSON.stringify(searchInput.value))
+    filterFunc()
+
+    videoCardContainer.innerHTML = ""
+    videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
+    data.items.forEach(item => {
+      getChannelIcon(item);
+    })
+  }
+  else {
+    alert("Type Something to Search...!")
+  }
+})
+
+
+
+//Responsive navbar form
+const searchInputRes = document.querySelector('.search-bar-res');
+const searchBtnRes = document.querySelector('.search-btn-res');
+const formObjRes = document.getElementById("myFormRes")
+
+formObjRes.addEventListener("submit", async (e) => {
+  e.preventDefault()
+  if (searchInputRes.value.length) {
+    const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${searchInputRes.value}&key=${API_KEY}`)
+    const data = await fetchURL.json()
+
+    localStorage.setItem("recent", JSON.stringify(searchInputRes.value))
     filterFunc()
 
     videoCardContainer.innerHTML = ""
@@ -362,8 +416,8 @@ async function getChannelDetails(id) {
 
     `
 
-    if( activityCard[2] !== undefined && playlistCard[2] !== undefined){
-      videoCardContainer.innerHTML+=
+  if (activityCard[2] !== undefined && playlistCard[2] !== undefined) {
+    videoCardContainer.innerHTML +=
       `
       <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -463,5 +517,5 @@ async function getChannelDetails(id) {
   </div>
 </div>
   </div>`
-    }
+  }
 }

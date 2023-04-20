@@ -1,69 +1,123 @@
 /* card */
-.video{
-    height: 300px;
-    object-fit: cover;
+.video {
+  height: 300px;
+  object-fit: cover;
 }
 
-.content{
-    width: 100%;
-    height: min-content;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+.content {
+  width: 100%;
+  height: min-content;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.channel-icon{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
+.channel-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
-.title{
-    width: 100%;
-    height: min-content;
+.title {
+  width: 100%;
+  height: min-content;
 }
 
-.channel-name{
-    font-size: 14px;
-    margin: 2px 0;
-    color: #979797;
+.channel-name {
+  font-size: 14px;
+  margin: 2px 0;
+  color: #979797;
 }
 
 
 /* filter */
-  .overflow-auto {
-    overflow: auto;
-  }
+.overflow-auto {
+  overflow: auto;
+}
 
-  .search-filter {
-    height: 50px;
-    width: 120px;
-    margin: 10px;
-    border: none;
-    border-radius: 30px;
-  }
-  
-  
-  /* youtubeVideo */
-  
-  .youtubeVideo{
-    height: 50vh;
-  }
-  
-  
-  /* channel details */
-  .channelIcon{
-    margin-left: 50px;
-    margin-top: 20px;
-  }
-  
-  .aboutIcon{
-    height: 20vh;
-  }
-  
-  .aboutCard{
-    width: 50%;
-    height: min-content;
-  }
+.search-filter {
+  height: 50px;
+  width: 120px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+}
+
+
+/* youtubeVideo */
+
+.youtubeVideo {
+  height: 50vh;
+}
+
+
+/* channel details */
+.channelIcon {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.aboutIcon {
+  height: 20vh;
+}
+
+.aboutCard {
+  width: 50%;
+  height: min-content;
+}
+
+
+/* nav bar */
+#responsiveNav {
+  display: none;
+}
+
+.resNavBar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+/* side-bar */
+.side-bar {
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+  left: 0;
+  min-width: 100%;
+  height: min-content;
+  background: #fff;
+  padding-right: 10px;
+}
+
+.links {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #242424;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.links img {
+  height: 25px;
+  margin-right: 20px;
+}
+
+.links:hover,
+.links.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.seperator {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
