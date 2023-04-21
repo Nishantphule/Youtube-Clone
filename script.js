@@ -1,5 +1,5 @@
 // api key
-// const API_KEY = 'AIzaSyDidpfpjSHPLFS9x7d2Xej_94-uHl_iJQY';
+const API_KEY = 'AIzaSyDidpfpjSHPLFS9x7d2Xej_94-uHl_iJQY';
 
 // div where videos get append
 const videoCardContainer = document.querySelector('.videoCardContainer');
