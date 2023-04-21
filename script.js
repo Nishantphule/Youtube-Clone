@@ -1,5 +1,5 @@
 // api key
-const API_KEY = 'AIzaSyDidpfpjSHPLFS9x7d2Xej_94-uHl_iJQY';
+// const API_KEY = 'AIzaSyDidpfpjSHPLFS9x7d2Xej_94-uHl_iJQY';
 
 // div where videos get append
 const videoCardContainer = document.querySelector('.videoCardContainer');
@@ -359,6 +359,14 @@ async function getChannelDetails(id) {
   const activityData = await activityURL.json()
   activityCard = activityData.items
 
+  let videoCount = videoData.statistics.videoCount
+  if(videoCount === 1){
+    videoCount = `${videoCount} Video`
+  }
+  else{
+    videoCount = `${videoCount} Videos`
+  }
+  
   let viewCount = videoData.statistics.viewCount
   let subsCount = videoData.statistics.subscriberCount
   let statsCount = [viewCount, subsCount].map((stat) => {
@@ -403,7 +411,7 @@ async function getChannelDetails(id) {
         <span class="visually-hidden">country</span>
       </span> 
       </h4>
-        <h5 class="card-title">${statsCount[1]} Subscribers ${videoData.statistics.videoCount} Videos <br/> ${statsCount[0]} Views</h5>
+        <h5 class="card-title">${statsCount[1]} Subscribers ${videoCount} <br/> ${statsCount[0]} Views</h5>
         <p class="card-text">${videoData.snippet.localized.description}</p>
       </div>
     </div>
@@ -497,6 +505,199 @@ async function getChannelDetails(id) {
 </div>
 </div>
 </div>
+
+</div></div>
+
+
+  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${videoData.snippet.thumbnails.high.url}" class="img-fluid rounded-start" alt="${videoData.snippet.title}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${videoData.snippet.title}</h5>
+        <p class="card-text">${videoData.snippet.customUrl}</p>
+        <p class="card-text"><small class="text-muted">Since ${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>`
+  }
+  
+  else if (activityCard[1] !== undefined && playlistCard[1] !== undefined) {
+    videoCardContainer.innerHTML +=
+      `
+      <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-playlist-tab" data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button" role="tab" aria-controls="nav-playlist" aria-selected="true">Playlist</button>
+    <button class="nav-link" id="nav-activity-tab" data-bs-toggle="tab" data-bs-target="#nav-activity" type="button" role="tab" aria-controls="nav-activity" aria-selected="false">Recent Activity</button>
+    <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">About Channel</button>
+  </div>
+</nav>
+
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playlist" role="tabpanel" aria-labelledby="nav-playlist-tab">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <div class="col">
+  <div class="card">
+  <img src="${playlistCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[0].snippet.title}">
+  <div class="card-body">
+    <h5 class="card-title">${playlistCard[0].snippet.title}</h5>
+    <small>${playlistCard[0].contentDetails.itemCount} Videos</small>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col">
+  <div class="card">
+  <img src="${playlistCard[1].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[1].snippet.title}">
+  <div class="card-body">
+    <h5 class="card-title">${playlistCard[1].snippet.title}</h5>
+    <small>${playlistCard[1].contentDetails.itemCount} Videos</small>
+  </div>
+  </div>
+  </div>
+  
+  </div></div>
+  
+  
+  <div class="tab-pane fade" id="nav-activity" role="tabpanel" aria-labelledby="nav-activity-tab">
+<div class="row row-cols-1 row-cols-md-2 g-4" ;>
+  
+<div class="col">
+<div class="card">
+<img src="${activityCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[0].snippet.title}">
+<div class="card-body">
+  <h5 class="card-title">${activityCard[0].snippet.title}</h5>
+  <small>${(activityCard[0].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card">
+<img src="${activityCard[1].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[1].snippet.title}">
+<div class="card-body">
+  <h5 class="card-title">${activityCard[1].snippet.title}</h5>
+  <small>${(activityCard[1].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
+</div>
+</div>
+</div>
+
+</div></div>
+
+
+  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${videoData.snippet.thumbnails.high.url}" class="img-fluid rounded-start" alt="${videoData.snippet.title}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${videoData.snippet.title}</h5>
+        <p class="card-text">${videoData.snippet.customUrl}</p>
+        <p class="card-text"><small class="text-muted">Since ${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>`
+  }
+  
+  else if (activityCard[0] !== undefined && playlistCard[0] !== undefined) {
+    videoCardContainer.innerHTML +=
+      `
+      <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-playlist-tab" data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button" role="tab" aria-controls="nav-playlist" aria-selected="true">Playlist</button>
+    <button class="nav-link" id="nav-activity-tab" data-bs-toggle="tab" data-bs-target="#nav-activity" type="button" role="tab" aria-controls="nav-activity" aria-selected="false">Recent Activity</button>
+    <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">About Channel</button>
+  </div>
+</nav>
+
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playlist" role="tabpanel" aria-labelledby="nav-playlist-tab">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <div class="col">
+  <div class="card">
+  <img src="${playlistCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${playlistCard[0].snippet.title}">
+  <div class="card-body">
+    <h5 class="card-title">${playlistCard[0].snippet.title}</h5>
+    <small>${playlistCard[0].contentDetails.itemCount} Videos</small>
+  </div>
+  </div>
+  </div>
+  
+  </div></div>
+  
+  
+  <div class="tab-pane fade" id="nav-activity" role="tabpanel" aria-labelledby="nav-activity-tab">
+<div class="row row-cols-1 row-cols-md-2 g-4" ;>
+  
+<div class="col">
+<div class="card">
+<img src="${activityCard[0].snippet.thumbnails.high.url}" class="card-img-top" alt="${activityCard[0].snippet.title}">
+<div class="card-body">
+  <h5 class="card-title">${activityCard[0].snippet.title}</h5>
+  <small>${(activityCard[0].snippet.publishedAt).split("").slice(0, 10).join("")} Upload</small>
+</div>
+</div>
+</div>
+
+</div></div>
+
+
+  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${videoData.snippet.thumbnails.high.url}" class="img-fluid rounded-start" alt="${videoData.snippet.title}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${videoData.snippet.title}</h5>
+        <p class="card-text">${videoData.snippet.customUrl}</p>
+        <p class="card-text"><small class="text-muted">Since ${(videoData.snippet.publishedAt).split("").slice(0, 10).join("")}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>`
+  }
+  
+  else{
+    videoCardContainer.innerHTML +=
+      `
+      <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-playlist-tab" data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button" role="tab" aria-controls="nav-playlist" aria-selected="true">Playlist</button>
+    <button class="nav-link" id="nav-activity-tab" data-bs-toggle="tab" data-bs-target="#nav-activity" type="button" role="tab" aria-controls="nav-activity" aria-selected="false">Recent Activity</button>
+    <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">About Channel</button>
+  </div>
+</nav>
+
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-playlist" role="tabpanel" aria-labelledby="nav-playlist-tab">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <h3>No Data Available</h3>
+  
+  </div></div>
+  
+  
+  <div class="tab-pane fade" id="nav-activity" role="tabpanel" aria-labelledby="nav-activity-tab">
+<div class="row row-cols-1 row-cols-md-2 g-4" ;>
+  
+<h3>No Data Available</h3>
 
 </div></div>
 
