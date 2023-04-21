@@ -1,5 +1,5 @@
 // api key
-const API_KEY = 'AIzaSyAqAK9B8sn_PLjx69LS8fNeHX83cMs00RI';
+const API_KEY = 'AIzaSyDidpfpjSHPLFS9x7d2Xej_94-uHl_iJQY';
 
 // div where videos get append
 const videoCardContainer = document.querySelector('.videoCardContainer');
@@ -167,8 +167,8 @@ getMostPopularVideos()
 
 
 // form
-const searchInput = document.querySelectorAll('.search-bar');
-const searchBtn = document.querySelectorAll('.search-btn');
+const searchInput = document.querySelector('.search-bar');
+const searchBtn = document.querySelector('.search-btn');
 const formObj = document.getElementById("myForm")
 
 formObj.addEventListener("submit", async (e) => {
