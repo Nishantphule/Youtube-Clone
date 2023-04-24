@@ -80,6 +80,11 @@
   margin-top: 10px;
 }
 
+.resNavBarForm{
+  display: flex;
+  justify-content: space-between;
+}
+
 
 /* side-bar */
 .side-bar {
