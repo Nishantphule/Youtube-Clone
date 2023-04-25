@@ -26,7 +26,7 @@
 
 <body>
 
-    <div class="container-lg container-fluid position-relative">
+    <div class="container-fluid position-relative">
 
         <!-- navbar for large screen -->
         <nav id="mainNav" class="navbar navbar-collapse navbar-light mb-1">
@@ -54,8 +54,8 @@
                         class="fa-solid fa-magnifying-glass fa-lg" style="color: #0e0f10;"></i></button>
                 <button class=" border-0 mx-1 p-2 bg-transparent" title="create"><i class="fa-solid fa-video fa-lg"
                         style="color: #050505;"></i></button>
-                <button class=" border-0  mx-1 p-2 bg-transparent" title="notification"><i class="fa-solid fa-bell fa-lg"
-                        style="color: #050505;"></i><sup
+                <button class=" border-0  mx-1 p-2 bg-transparent" title="notification"><i
+                        class="fa-solid fa-bell fa-lg" style="color: #050505;"></i><sup
                         class="text-white bg-danger rounded-circle p-1">9+</sup></button>
                 <button class=" border-0 p-2 bg-transparent" title="profile"><i class="fa-solid fa-user fa-lg"
                         style="color: #030303;"></i></button>
@@ -65,8 +65,8 @@
         <!-- narbar for mobile screen-->
         <nav id="responsiveNav">
             <div class="resNavBar">
-                <button onclick="backBtnNav()" class="border-0 bg-transparent"><i class="fa-solid fa-light fa-arrow-left fa-lg"
-                        style="color: #0c0d0d;"></i> </button>
+                <button onclick="backBtnNav()" class="border-0 bg-transparent"><i
+                        class="fa-solid fa-light fa-arrow-left fa-lg" style="color: #0c0d0d;"></i> </button>
                 <form id="myFormRes" class="resNavBarForm">
                     <input class="search-bar-res form-control me-2" name="name" type="search" placeholder="Search"
                         aria-label="Search">
@@ -74,43 +74,63 @@
                             class="fa-solid fa-magnifying-glass fa-lg" style="color: #0e0f10;"></i></button>
                 </form>
                 <button class="border-0 bg-transparent mx-2 p-2 fa-lg"><i class="fa-solid fa-microphone fa-lg"
-                    style="color: #131416;"></i></button>
+                        style="color: #131416;"></i></button>
             </div>
         </nav>
 
         <!-- sidebar -->
-        <div id="sideNav" class="side-bar container-fluid container-lg">
-            <a href="#" class="links active"><img src="img/home.PNG" alt="home">home</a>
-            <a href="#" class="links"><img src="img/explore.PNG" alt="explore">explore</a>
-            <a href="#" class="links"><img src="img/subscription.PNG" alt="subscription">subscription</a>
+        <div id="sideNav" class="side-bar container-fluid">
+            <a href="#" class="links active"><img src="img/home.PNG" alt="">home</a>
+            <a href="#" class="links"><img src="img/explore.PNG" alt="">explore</a>
+            <a href="#" class="links"><img src="img/subscription.PNG" alt="">subscription</a>
             <hr class="seperator">
-            <a href="#" class="links"><img src="img/library.PNG" alt="library">library</a>
-            <a href="#" class="links"><img src="img/history.PNG" alt="history">history</a>
-            <a href="#" class="links"><img src="img/your-video.PNG" alt="your video">your videos</a>
-            <a href="#" class="links"><img src="img/watch-later.PNG" alt="watch later">watch later</a>
-            <a href="#" class="links"><img src="img/liked video.PNG" alt="like video">liked videos</a>
-            <a href="#" class="links"><img src="img/show more.PNG" alt="show more">show more</a>
+            <a href="#" class="links"><img src="img/library.PNG" alt="">library</a>
+            <a href="#" class="links"><img src="img/history.PNG" alt="">history</a>
+            <a href="#" class="links"><img src="img/your-video.PNG" alt="">your video</a>
+            <a href="#" class="links"><img src="img/watch-later.PNG" alt="">watch leater</a>
+            <a href="#" class="links"><img src="img/liked video.PNG" alt="">like video</a>
+            <a href="#" class="links"><img src="img/show more.PNG" alt="">show more</a>
         </div>
 
-        <!-- filter bar -->
-        <div class="container-lg container-fluid mt-2 overflow-auto">
-            <div id="filterSearch" style="width: max-content;height: 70px;">
-                <button class="search-filter bg-primary poin">Most Popular</button>
-                <button class="search-filter">SuperCars</button>
-                <button class="search-filter">Superbikes</button>
-                <button class="search-filter">Messi</button>
-                <button class="search-filter">NFT</button>
-                <button class="search-filter">Ipl</button>
-                <button class="search-filter">ChatGPT</button>
-                <button class="search-filter">Snooker</button>
-                <button class="search-filter">Pool</button>
-                <button class="search-filter">Animals</button>
+
+      <!-- sideBar two -->
+        <div class="row">
+            <div class="sideBar col-md-1 d-md-flex-colomn align-content-center justify-content-center mt-4">
+                <a href="#" class="tabs active"><img src="img/home.PNG" alt="home"><small>Home</small></a>
+                <a href="#" class="tabs"><img src="img/th.jpeg" alt="explore"><small>shorts</small></a>
+                <a href="#" class="tabs"><img src="img/subscription.PNG"
+                        alt="subscription"><small>subscription</small></a>
+                <a href="#" class="tabs"><img src="img/library.PNG" alt="library"><small>library</small></a>
             </div>
+
+            <!-- content div -->
+            <div class="col-xs-12 col-md-11">
+                <!-- filter bar -->
+                <div class="container-fluid mt-2 overflow-auto">
+                    <div id="filterSearch" style="width: max-content;height: 70px;">
+                        <button class="search-filter bg-primary poin">Most Popular</button>
+                        <button class="search-filter">SuperCars</button>
+                        <button class="search-filter">Superbikes</button>
+                        <button class="search-filter">Messi</button>
+                        <button class="search-filter">NFT</button>
+                        <button class="search-filter">Ipl</button>
+                        <button class="search-filter">ChatGPT</button>
+                        <button class="search-filter">Snooker</button>
+                        <button class="search-filter">Pool</button>
+                        <button class="search-filter">Animals</button>
+                        <button class="search-filter">Gadgets</button>
+                        <button class="search-filter">Cricket</button>
+                        <button class="search-filter">Podcast</button>
+                        <button class="search-filter">Beerbiceps</button>
+                    </div>
+                </div>
+                <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
+
+                </div>
+            </div>
+
         </div>
 
-        <!-- content div -->
-        <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
-        </div>
     </div>
 
     <!-- external js -->

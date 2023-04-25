@@ -92,10 +92,10 @@
   z-index: 1;
   top: 60px;
   left: 0;
-  min-width: 100%;
-  height: min-content;
+  max-width: 200px;
+  height: 100vh;
   background: #fff;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 .links {
@@ -121,8 +121,31 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-.seperator {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+.tabs {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #242424;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.tabs img {
+  height: 30px;
+}
+
+.tabs:hover,
+.tabs.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width:767px){
+  .sideBar{
+    display: none;
+  }
 }
