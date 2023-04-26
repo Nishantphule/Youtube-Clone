@@ -128,7 +128,7 @@ filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
   let filterValue = e.target.firstChild.nodeValue
   localStorage.setItem("recent", JSON.stringify(filterValue))
   localStorage.setItem("channelId", null)
-  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${filterValue}&key=${API_KEY}`)
+  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=20&q=${filterValue}&key=${API_KEY}`)
   const data = await fetchURL.json()
   filterFunc()
   scrollToTop()
@@ -152,6 +152,16 @@ function filterFunc() {
   })
 }
 
+//scroll to top 
+function scrollToTop() {
+  var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  if (currentScroll > 0) {
+    return window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+}
 
 
 // to get most popular videos
@@ -184,7 +194,7 @@ const formObj = document.getElementById("myForm")
 formObj.addEventListener("submit", async (e) => {
   e.preventDefault()
   if (searchInput.value.length) {
-    const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${searchInput.value}&key=${API_KEY}`)
+    const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=20&q=${searchInput.value}&key=${API_KEY}`)
     const data = await fetchURL.json()
 
     localStorage.setItem("recent", JSON.stringify(searchInput.value))
@@ -213,7 +223,7 @@ const formObjRes = document.getElementById("myFormRes")
 formObjRes.addEventListener("submit", async (e) => {
   e.preventDefault()
   if (searchInputRes.value.length) {
-    const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${searchInputRes.value}&key=${API_KEY}`)
+    const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=20&q=${searchInputRes.value}&key=${API_KEY}`)
     const data = await fetchURL.json()
 
     localStorage.setItem("recent", JSON.stringify(searchInputRes.value))
@@ -353,21 +363,11 @@ async function watchVideo(id) {
 }
 
 
-//scroll to top 
-function scrollToTop() {
-  var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-  if (currentScroll > 0) {
-    return window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-}
 
 // back btn
 async function backBtnFunc() {
   const recent = localStorage.getItem("recent")
-  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${recent}&key=${API_KEY}`)
+  const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=20&q=${recent}&key=${API_KEY}`)
   const data = await fetchURL.json()
   filterFunc()
   videoCardContainer.innerHTML = ""
