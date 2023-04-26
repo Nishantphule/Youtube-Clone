@@ -482,8 +482,14 @@ async function getChannelDetails(id) {
 
   // nav tabs for channel playlist , recent activity , about 
   const navTab = document.createElement("nav")
+  navTab.classList = ""
+  navTab.style.position = "sticky"
+  navTab.style.top = "135px"
+  navTab.style.zIndex = 1
+  navTab.classList = "bg-white"
+  
   const navDiv = document.createElement('div')
-  navDiv.classList = "nav nav-tabs"
+  navDiv.classList = "nav nav-tabs mt-2 pt-2"
   navDiv.id = "nav-tab"
   navDiv.role = 'tablist'
 

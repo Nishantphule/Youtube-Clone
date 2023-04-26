@@ -29,7 +29,7 @@
     <div class="container-fluid position-relative">
 
         <!-- navbar for large screen -->
-        <nav id="mainNav" class="navbar navbar-collapse navbar-light mb-1">
+        <nav id="mainNav" class="navbar navbar-collapse navbar-light fixed-top bg-white">
             <div>
                 <button id="sideBarNav" class="border-0 bg-transparent"><i class="fa fa-bars fa-lg"
                         style="color: #090a0b;"></i></button>
@@ -63,7 +63,7 @@
         </nav>
 
         <!-- narbar for mobile screen-->
-        <nav id="responsiveNav">
+        <nav id="responsiveNav" class="fixed-top">
             <div class="resNavBar">
                 <button onclick="backBtnNav()" class="border-0 bg-transparent"><i
                         class="fa-solid fa-light fa-arrow-left fa-lg" style="color: #0c0d0d;"></i> </button>
@@ -79,7 +79,7 @@
         </nav>
 
         <!-- sidebar -->
-        <div id="sideNav" class="side-bar container-fluid">
+        <div id="sideNav" class="side-bar container-fluid position-fixed">
             <a href="#" class="links active"><img src="img/home.PNG" alt="">home</a>
             <a href="#" class="links"><img src="img/explore.PNG" alt="">explore</a>
             <a href="#" class="links"><img src="img/subscription.PNG" alt="">subscription</a>
@@ -94,8 +94,8 @@
 
 
       <!-- sideBar two -->
-        <div class="row">
-            <div class="sideBar col-md-1 d-md-flex-colomn align-content-center justify-content-center mt-4">
+        <div class="row mt-5">
+            <div class="sideBar col-md-1 bg-white">
                 <a href="#" class="tabs active"><img src="img/home.PNG" alt="home"><small>Home</small></a>
                 <a href="#" class="tabs"><img src="img/th.jpeg" alt="explore"><small>shorts</small></a>
                 <a href="#" class="tabs"><img src="img/subscription.PNG"
@@ -106,7 +106,7 @@
             <!-- content div -->
             <div class="col-xs-12 col-md-11">
                 <!-- filter bar -->
-                <div class="container-fluid mt-2 overflow-auto">
+                <div class="container-fluid overflow-auto bg-white">
                     <div id="filterSearch" style="width: max-content;height: 70px;">
                         <button class="search-filter bg-primary poin">Most Popular</button>
                         <button class="search-filter">SuperCars</button>
@@ -124,6 +124,7 @@
                         <button class="search-filter">Beerbiceps</button>
                     </div>
                 </div>
+                
                 <div class="videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3">
 
                 </div>

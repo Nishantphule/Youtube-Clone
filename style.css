@@ -35,6 +35,9 @@
 /* filter */
 .overflow-auto {
   overflow: auto;
+  position: sticky;
+  top: 50px;
+  z-index: 1;
 }
 
 .search-filter {
@@ -89,8 +92,8 @@
 /* side-bar */
 .side-bar {
   position: absolute;
-  z-index: 1;
-  top: 60px;
+  z-index: 2;
+  top: 50px;
   left: 0;
   max-width: 200px;
   height: 100vh;
@@ -121,6 +124,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+
 .tabs {
   display: flex;
   flex-direction: column;
@@ -142,6 +146,13 @@
 .tabs:hover,
 .tabs.active {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.sideBar{
+  position: sticky;
+  top: 50px;
+  z-index: 1;
+  height: max-content;
 }
 
 @media only screen and (max-width:767px){
