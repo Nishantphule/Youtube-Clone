@@ -131,6 +131,7 @@ filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
   const fetchURL = await fetch(`${keyword_http}part=snippet&maxResults=10&q=${filterValue}&key=${API_KEY}`)
   const data = await fetchURL.json()
   filterFunc()
+  scrollToTop()
   videoCardContainer.innerHTML = ""
 
   videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
@@ -160,8 +161,9 @@ async function getMostPopularVideos() {
     videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     localStorage.setItem("recent", JSON.stringify("Most Popular"))
     localStorage.setItem("channelId", null)
+    scrollToTop()
     filterFunc()
-    const res = await fetch(`${video_http}part=snippet&chart=mostPopular&maxResults=10&regionCode=IN&key=${API_KEY}`)
+    const res = await fetch(`${video_http}part=snippet&chart=mostPopular&maxResults=20&regionCode=IN&key=${API_KEY}`)
     const data = await res.json()
     data.items.forEach(item => {
       getChannelIcon(item);
@@ -187,6 +189,7 @@ formObj.addEventListener("submit", async (e) => {
 
     localStorage.setItem("recent", JSON.stringify(searchInput.value))
     localStorage.setItem("channelId", null)
+    scrollToTop()
     filterFunc()
 
     videoCardContainer.innerHTML = ""
@@ -215,6 +218,7 @@ formObjRes.addEventListener("submit", async (e) => {
 
     localStorage.setItem("recent", JSON.stringify(searchInputRes.value))
     localStorage.setItem("channelId", null)
+    scrollToTop()
     filterFunc()
 
     videoCardContainer.innerHTML = ""
@@ -236,7 +240,7 @@ async function watchVideo(id) {
   const loading = document.createElement("span")
   loading.innerHTML = '<div class="d-flex align-items-center justify-content-center mt-5"><div class="spinner-border"></div></div>'
   videoCardContainer.appendChild(loading)
-  
+
   const fetchURL = await fetch(`${video_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
   const data = await fetchURL.json()
   const videoData = data.items[0]
@@ -349,6 +353,16 @@ async function watchVideo(id) {
 }
 
 
+//scroll to top 
+function scrollToTop() {
+  var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  if (currentScroll > 0) {
+    return window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+}
 
 // back btn
 async function backBtnFunc() {
@@ -373,7 +387,7 @@ async function getChannelDetails(id) {
   const loading = document.createElement("span")
   loading.innerHTML = '<div class="d-flex align-items-center justify-content-center mt-5"><div class="spinner-border"></div></div>'
   videoCardContainer.appendChild(loading)
-  
+
   // channel details
   const fetchURL = await fetch(`${channel_http}part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
   const data = await fetchURL.json()
@@ -390,7 +404,7 @@ async function getChannelDetails(id) {
   activityCard = activityData.items
 
   videoCardContainer.removeChild(loading)
-  
+
   let videoCount = videoData.statistics.videoCount
   if (videoCount === 1) {
     videoCount = `${videoCount} Video`
@@ -484,12 +498,12 @@ async function getChannelDetails(id) {
   const navTab = document.createElement("nav")
   navTab.classList = ""
   navTab.style.position = "sticky"
-  navTab.style.top = "135px"
+  navTab.style.top = "120px"
   navTab.style.zIndex = 1
   navTab.classList = "bg-white"
-  
+
   const navDiv = document.createElement('div')
-  navDiv.classList = "nav nav-tabs mt-2 pt-2"
+  navDiv.classList = "nav nav-tabs py-2"
   navDiv.id = "nav-tab"
   navDiv.role = 'tablist'
 
@@ -512,6 +526,12 @@ async function getChannelDetails(id) {
     buttonEle.setAttribute('aria-controls', `nav-${tab}`)
     buttonEle.innerText = `${tab}`
     buttonEle.style.textTransform = "capitalize"
+    buttonEle.addEventListener("click",()=>{
+      window.scrollTo({
+        top: 350,
+        behavior: "smooth"
+      });
+    })
     navDiv.append(buttonEle)
   })
 
