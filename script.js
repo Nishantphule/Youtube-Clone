@@ -1,5 +1,5 @@
 // api key
-const API_KEY = 'AIzaSyAUw9zNp1__NwzmE1nTQlUvcBPnStSoBVI';
+const API_KEY = 'AIzaSyCUv-Su7aCEVbNo59PHWj817zPEA9zrZfQ';
 
 //main div where content gets append
 const videoCardContainer = document.querySelector('.videoCardContainer');
@@ -141,9 +141,9 @@ filterButtons.forEach((btn) => btn.addEventListener("click", async (e) => {
 }))
 
 function filterFunc() {
-  let data = JSON.parse(localStorage.getItem("recent"))
+  let data = JSON.parse(localStorage.getItem("recent")).toLowerCase()
   filterButtons.forEach(btn => {
-    if (btn.innerText !== data) {
+    if (btn.innerText.toLowerCase() !== data) {
       btn.classList = "search-filter"
     }
     else {
@@ -201,7 +201,7 @@ formObj.addEventListener("submit", async (e) => {
     localStorage.setItem("channelId", null)
     scrollToTop()
     filterFunc()
-
+    
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
@@ -230,7 +230,7 @@ formObjRes.addEventListener("submit", async (e) => {
     localStorage.setItem("channelId", null)
     scrollToTop()
     filterFunc()
-
+    
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
