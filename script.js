@@ -262,8 +262,7 @@ async function watchVideo(id) {
   let rest = (videoData.snippet.description).split("").slice(200, lengthNum).join("")
 
   const cardDiv = document.createElement("div")
-  cardDiv.classList = "card"
-  cardDiv.style.width = "100%"
+  cardDiv.classList = "videoCard"
 
   const iframeDiv = document.createElement("iframe")
   iframeDiv.classList = "youtubeVideo card-img-top"

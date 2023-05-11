@@ -52,7 +52,12 @@
 /* youtubeVideo */
 
 .youtubeVideo {
-  height: 50vh;
+  height: 60vh;
+}
+
+.videoCard{
+  width: 80%;
+  margin: auto;
 }
 
 
@@ -158,5 +163,8 @@
 @media only screen and (max-width:767px){
   .sideBar{
     display: none;
+  }
+  .videoCard{
+    width: 100%;
   }
 }
