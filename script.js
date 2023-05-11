@@ -320,7 +320,7 @@ async function watchVideo(id) {
 
   const readBtn = document.createElement("button")
   readBtn.id = "myBtn"
-  readBtn.innerHTML = "Read More"
+  readBtn.innerHTML = "Show More"
 
   const backBtn = document.createElement("button")
   backBtn.classList = "ms-2"
@@ -351,11 +351,11 @@ async function watchVideo(id) {
   readBtn.addEventListener("click", (e) => {
     if (dots.style.display === "none") {
       dots.style.display = "inline";
-      btnText.innerHTML = "Read more";
+      btnText.innerHTML = "Show more";
       moreText.style.display = "none";
     } else {
       dots.style.display = "none";
-      btnText.innerHTML = "Read less";
+      btnText.innerHTML = "Show less";
       moreText.style.display = "inline";
     }
   })
