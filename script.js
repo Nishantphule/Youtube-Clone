@@ -4,6 +4,7 @@ const API_KEY = 'AIzaSyCUv-Su7aCEVbNo59PHWj817zPEA9zrZfQ';
 //main div where content gets append
 const videoCardContainer = document.querySelector('.videoCardContainer');
 
+
 // youtube api links
 let video_http = "https://www.googleapis.com/youtube/v3/videos?";
 let channel_http = "https://www.googleapis.com/youtube/v3/channels?";
@@ -201,7 +202,7 @@ formObj.addEventListener("submit", async (e) => {
     localStorage.setItem("channelId", null)
     scrollToTop()
     filterFunc()
-    
+
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
@@ -230,7 +231,7 @@ formObjRes.addEventListener("submit", async (e) => {
     localStorage.setItem("channelId", null)
     scrollToTop()
     filterFunc()
-    
+
     videoCardContainer.innerHTML = ""
     videoCardContainer.classList = "videoCardContainer row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 mt-3"
     data.items.forEach(item => {
@@ -525,7 +526,7 @@ async function getChannelDetails(id) {
     buttonEle.setAttribute('aria-controls', `nav-${tab}`)
     buttonEle.innerText = `${tab}`
     buttonEle.style.textTransform = "capitalize"
-    buttonEle.addEventListener("click",()=>{
+    buttonEle.addEventListener("click", () => {
       window.scrollTo({
         top: 350,
         behavior: "smooth"
