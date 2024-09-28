@@ -1,5 +1,7 @@
+require("dotenv").config();
+
 // api key
-const API_KEY = "AIzaSyCUv-Su7aCEVbNo59PHWj817zPEA9zrZfQ";
+const API_KEY = process.env.API_KEY;
 
 //main div where content gets append
 const videoCardContainer = document.querySelector(".videoCardContainer");
