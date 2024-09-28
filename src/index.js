@@ -420,14 +420,14 @@ async function getChannelDetails(id) {
     `${playlist_http}part=snippet%2CcontentDetails&channelId=${id}&key=${API_KEY}`
   );
   const playlistData = await playlistURL.json();
-  playlistCard = playlistData.items;
+  let playlistCard = playlistData.items;
 
   // activity
   const activityURL = await fetch(
     `${activity_http}part=snippet%2CcontentDetails&channelId=${id}&key=${API_KEY}`
   );
   const activityData = await activityURL.json();
-  activityCard = activityData.items;
+  let activityCard = activityData.items;
 
   videoCardContainer.removeChild(loading);
 
